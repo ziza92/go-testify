@@ -20,7 +20,6 @@ func PreRespRecorder(count int, city string) *httptest.ResponseRecorder {
 
 func TestCodeResponse(t *testing.T) {
 	expexcedCode := 200
-
 	respRec := PreRespRecorder(10, "moscow")
 
 	if assert.Equal(t, respRec.Code, expexcedCode) && assert.NotEmpty(t, respRec.Body.String()) {
@@ -31,7 +30,6 @@ func TestCodeResponse(t *testing.T) {
 func TestCityValue(t *testing.T) {
 	expexcedCode := 400
 	expectedMessage := "wrong city value"
-
 	respRec := PreRespRecorder(10, "krasnokorsk")
 
 	if assert.Equal(t, respRec.Code, expexcedCode) && assert.Equal(t, respRec.Body.String(), expectedMessage) {
@@ -41,7 +39,6 @@ func TestCityValue(t *testing.T) {
 
 func TestMainHandlerWhenCountMoreThanTotal(t *testing.T) {
 	totalCount := 4
-
 	respRec := PreRespRecorder(10, "moscow")
 	respArray := strings.Split(respRec.Body.String(), ",")
 
